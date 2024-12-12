@@ -30,4 +30,19 @@ export class LicensesController {
   deleteLicense(@Param('id') id: string): boolean {
     return this.licensesService.delete(id);
   }
+
+  @Post(':id/revoke')
+  revokeLicense(@Param('id') id: string): boolean {
+    return this.licensesService.revoke(id);
+  }
+
+  @Get(':id/status')
+  getLicenseStatus(@Param('id') id: string): string | undefined {
+    return this.licensesService.getStatus(id);
+  }
+
+  @Post('validate')
+  validateLicense(@Body('licenseKey') licenseKey: string): boolean {
+    return this.licensesService.validate(licenseKey);
+  }
 }
